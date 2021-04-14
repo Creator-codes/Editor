@@ -22,6 +22,7 @@ namespace Editor
         private int curPostion = -1;
         /* 初始字体大小 */
         private float fontSize = 12;
+        
         public Main()
         {
             InitializeComponent();
@@ -118,11 +119,12 @@ namespace Editor
             long linesCnt = editText.Text.Split('\n').Length;
             long charsCnt = editTextLength - linesCnt + 1;
             stateLabel.Text = String.Format("Lines={0}, Characters={1}", linesCnt, charsCnt);
-            lineNumText.Text = "1";
-            for (long i = 2; i <= linesCnt; i++)
+            string linesCntText = "";
+            for (int i = 2; i <= linesCnt; i++)
             {
-                lineNumText.Text += "\n" + i ;
+                linesCntText += "\n" + i ;
             }
+            lineNumText.Text = "1" + linesCntText;
 
             String unsaved = "-unsaved";
             String title = titleLabel.Text;
@@ -810,25 +812,18 @@ namespace Editor
             lan.language(title.Substring(title.LastIndexOf(".") + 1), editText);
         }
         /*
-         * 打开浏览器，跳转至开源地址
+         * 打开浏览器
          */
         private void openBrowser(String addr)
         {
-            openBrowser(addr);
+            Process.Start(addr);
         }
         /*
-         * 开源地址一：GitHub
+         * 开源地址：GitHub
          */
         private void gitHubToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openBrowser("https://github.com/Creator-codes/Editor");
-        }
-        /*
-         * 开源地址二：Gitee
-         */
-        private void giteeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openBrowser("https://gitee.com/Link2Points/dashboard/projects");
         }
         /*
          * 打开关于窗口
