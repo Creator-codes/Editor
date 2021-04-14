@@ -43,7 +43,7 @@ namespace Editor
          */
         private void aboutMoreLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://link2points.blog.csdn.net/");
+            System.Diagnostics.Process.Start("https://link2points.blog.csdn.net/article/details/114239504");
         }
         /*
          * 关闭
