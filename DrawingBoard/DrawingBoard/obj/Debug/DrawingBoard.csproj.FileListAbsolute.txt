@@ -1,0 +1,11 @@
+E:\C#\DrawingBoard\DrawingBoard\bin\Debug\DrawingBoard.exe.config
+E:\C#\DrawingBoard\DrawingBoard\bin\Debug\DrawingBoard.exe
+E:\C#\DrawingBoard\DrawingBoard\bin\Debug\DrawingBoard.pdb
+E:\C#\DrawingBoard\DrawingBoard\obj\Debug\DrawingBoard.csprojAssemblyReference.cache
+E:\C#\DrawingBoard\DrawingBoard\obj\Debug\DrawingBoard.Properties.Resources.resources
+E:\C#\DrawingBoard\DrawingBoard\obj\Debug\DrawingBoard.csproj.GenerateResource.cache
+E:\C#\DrawingBoard\DrawingBoard\obj\Debug\DrawingBoard.csproj.CoreCompileInputs.cache
+E:\C#\DrawingBoard\DrawingBoard\obj\Debug\DrawingBoard.exe
+E:\C#\DrawingBoard\DrawingBoard\obj\Debug\DrawingBoard.pdb
+E:\C#\DrawingBoard\DrawingBoard\obj\Debug\DrawingBoard.mainForm.resources
+E:\C#\DrawingBoard\DrawingBoard\obj\Debug\DrawingBoard.helpForm.resources
