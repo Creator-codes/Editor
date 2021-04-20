@@ -136,7 +136,7 @@
             this.brushBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.brushBtn.Name = "brushBtn";
             this.brushBtn.Size = new System.Drawing.Size(38, 20);
-            this.brushBtn.Text = "toolStripButton1";
+            this.brushBtn.Text = "笔";
             this.brushBtn.Click += new System.EventHandler(this.brushBtn_Click);
             // 
             // eraserBtn
@@ -146,7 +146,7 @@
             this.eraserBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.eraserBtn.Name = "eraserBtn";
             this.eraserBtn.Size = new System.Drawing.Size(38, 20);
-            this.eraserBtn.Text = "toolStripButton1";
+            this.eraserBtn.Text = "橡皮";
             this.eraserBtn.Click += new System.EventHandler(this.eraserBtn_Click);
             // 
             // toolStripButton3
@@ -161,7 +161,7 @@
             this.lineBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.lineBtn.Name = "lineBtn";
             this.lineBtn.Size = new System.Drawing.Size(38, 20);
-            this.lineBtn.Text = "toolStripButton1";
+            this.lineBtn.Text = "直线";
             this.lineBtn.Click += new System.EventHandler(this.lineBtn_Click);
             // 
             // rectBtn
@@ -171,7 +171,7 @@
             this.rectBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rectBtn.Name = "rectBtn";
             this.rectBtn.Size = new System.Drawing.Size(38, 20);
-            this.rectBtn.Text = "toolStripButton1";
+            this.rectBtn.Text = "矩形";
             this.rectBtn.Click += new System.EventHandler(this.rectBtn_Click);
             // 
             // triBtn
@@ -181,7 +181,7 @@
             this.triBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.triBtn.Name = "triBtn";
             this.triBtn.Size = new System.Drawing.Size(38, 20);
-            this.triBtn.Text = "toolStripButton4";
+            this.triBtn.Text = "三角";
             this.triBtn.Click += new System.EventHandler(this.triBtn_Click);
             // 
             // ellipseBtn
@@ -191,7 +191,7 @@
             this.ellipseBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ellipseBtn.Name = "ellipseBtn";
             this.ellipseBtn.Size = new System.Drawing.Size(38, 20);
-            this.ellipseBtn.Text = "toolStripButton2";
+            this.ellipseBtn.Text = "椭圆";
             this.ellipseBtn.Click += new System.EventHandler(this.ellipseBtn_Click);
             // 
             // pointToBtn
@@ -201,7 +201,7 @@
             this.pointToBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pointToBtn.Name = "pointToBtn";
             this.pointToBtn.Size = new System.Drawing.Size(38, 20);
-            this.pointToBtn.Text = "toolStripButton5";
+            this.pointToBtn.Text = "指向线";
             this.pointToBtn.Click += new System.EventHandler(this.pointToBtn_Click);
             // 
             // toolStripButton1
@@ -217,7 +217,7 @@
             this.colorBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.colorBtn.Name = "colorBtn";
             this.colorBtn.Size = new System.Drawing.Size(38, 20);
-            this.colorBtn.Text = "toolStripButton2";
+            this.colorBtn.Text = "调色板";
             this.colorBtn.Click += new System.EventHandler(this.colorBtn_Click);
             // 
             // sizeAdjustBtn
@@ -229,7 +229,7 @@
             this.sizeAdjustBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sizeAdjustBtn.Name = "sizeAdjustBtn";
             this.sizeAdjustBtn.Size = new System.Drawing.Size(38, 20);
-            this.sizeAdjustBtn.Text = "Size";
+            this.sizeAdjustBtn.Text = "大小";
             this.sizeAdjustBtn.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.sizeAdjustBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -237,21 +237,21 @@
             // 
             this.penSize_2.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (120)))), ((int) (((byte) (165)))), ((int) (((byte) (170)))));
             this.penSize_2.Name = "penSize_2";
-            this.penSize_2.Size = new System.Drawing.Size(96, 24);
+            this.penSize_2.Size = new System.Drawing.Size(152, 24);
             this.penSize_2.Text = "2";
             this.penSize_2.Click += new System.EventHandler(this.sizeMenuItem_Click);
             // 
             // penSize_6
             // 
             this.penSize_6.Name = "penSize_6";
-            this.penSize_6.Size = new System.Drawing.Size(96, 24);
+            this.penSize_6.Size = new System.Drawing.Size(152, 24);
             this.penSize_6.Text = "6";
             this.penSize_6.Click += new System.EventHandler(this.sizeMenuItem_Click);
             // 
             // penSize_10
             // 
             this.penSize_10.Name = "penSize_10";
-            this.penSize_10.Size = new System.Drawing.Size(96, 24);
+            this.penSize_10.Size = new System.Drawing.Size(152, 24);
             this.penSize_10.Text = "10";
             this.penSize_10.Click += new System.EventHandler(this.sizeMenuItem_Click);
             // 
@@ -263,7 +263,7 @@
             this.whiteboardBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.whiteboardBtn.Name = "whiteboardBtn";
             this.whiteboardBtn.Size = new System.Drawing.Size(38, 20);
-            this.whiteboardBtn.Text = "toolStripButton2";
+            this.whiteboardBtn.Text = "白板";
             this.whiteboardBtn.Click += new System.EventHandler(this.whiteboardBtn_Click);
             // 
             // toolStripLabel1
@@ -286,7 +286,7 @@
             this.textBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.textBtn.Name = "textBtn";
             this.textBtn.Size = new System.Drawing.Size(38, 20);
-            this.textBtn.Text = "toolStripButton4";
+            this.textBtn.Text = "文字";
             this.textBtn.Click += new System.EventHandler(this.textBtn_Click);
             // 
             // textBox
@@ -302,7 +302,7 @@
             this.clearBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.clearBtn.Name = "clearBtn";
             this.clearBtn.Size = new System.Drawing.Size(38, 20);
-            this.clearBtn.Text = "toolStripButton4";
+            this.clearBtn.Text = "清空";
             this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // toolStripButton4
