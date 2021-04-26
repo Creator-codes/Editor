@@ -845,6 +845,10 @@ namespace Editor
         private void 翻译TToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String text = editText.SelectedText;
+            if ("".Equals(text))
+            {
+                return;
+            }
             outputRichTextBox.Visible = true;
             outputRichTextBox.Text = "翻译内容：" + text + "\n结果：";
             try
