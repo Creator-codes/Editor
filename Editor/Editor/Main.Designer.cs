@@ -34,6 +34,7 @@ namespace Editor
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新建NToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +63,6 @@ namespace Editor
             this.帮助HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.开源SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.giteeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -77,6 +77,8 @@ namespace Editor
             this.titleLabel = new System.Windows.Forms.Label();
             this.lineNumText = new System.Windows.Forms.RichTextBox();
             this.editText = new System.Windows.Forms.RichTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.翻译TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rmWorkplaceBtn = new System.Windows.Forms.Button();
             this.workplaceListBox = new System.Windows.Forms.ListBox();
             this.adjustWidthLabel = new System.Windows.Forms.Label();
@@ -96,6 +98,7 @@ namespace Editor
             this.outputRichTextBox = new System.Windows.Forms.RichTextBox();
             this.refreshBtn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.replacePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -299,7 +302,7 @@ namespace Editor
             // 
             // 开源SToolStripMenuItem
             // 
-            this.开源SToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.gitHubToolStripMenuItem, this.giteeToolStripMenuItem});
+            this.开源SToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.gitHubToolStripMenuItem});
             this.开源SToolStripMenuItem.Name = "开源SToolStripMenuItem";
             this.开源SToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
             this.开源SToolStripMenuItem.Text = "开源(&S)";
@@ -310,13 +313,6 @@ namespace Editor
             this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             this.gitHubToolStripMenuItem.Text = "GitHub";
             this.gitHubToolStripMenuItem.Click += new System.EventHandler(this.gitHubToolStripMenuItem_Click);
-            // 
-            // giteeToolStripMenuItem
-            // 
-            this.giteeToolStripMenuItem.Name = "giteeToolStripMenuItem";
-            this.giteeToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
-            this.giteeToolStripMenuItem.Text = "Gitee";
-            this.giteeToolStripMenuItem.Click += new System.EventHandler(this.giteeToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
@@ -485,6 +481,7 @@ namespace Editor
             this.editText.AutoWordSelection = true;
             this.editText.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (46)))), ((int) (((byte) (52)))), ((int) (((byte) (64)))));
             this.editText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.editText.ContextMenuStrip = this.contextMenuStrip1;
             this.editText.DetectUrls = false;
             this.editText.EnableAutoDragDrop = true;
             this.editText.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (237)))), ((int) (((byte) (235)))), ((int) (((byte) (233)))));
@@ -497,6 +494,19 @@ namespace Editor
             this.editText.WordWrap = false;
             this.editText.VScroll += new System.EventHandler(this.editText_VScroll);
             this.editText.TextChanged += new System.EventHandler(this.editText_TextChanged);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.翻译TToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 28);
+            // 
+            // 翻译TToolStripMenuItem
+            // 
+            this.翻译TToolStripMenuItem.Name = "翻译TToolStripMenuItem";
+            this.翻译TToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+            this.翻译TToolStripMenuItem.Text = "翻译(&T)";
+            this.翻译TToolStripMenuItem.Click += new System.EventHandler(this.翻译TToolStripMenuItem_Click);
             // 
             // rmWorkplaceBtn
             // 
@@ -727,6 +737,7 @@ namespace Editor
             // 
             this.outputRichTextBox.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (74)))), ((int) (((byte) (77)))), ((int) (((byte) (81)))));
             this.outputRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.outputRichTextBox.ContextMenuStrip = this.contextMenuStrip1;
             this.outputRichTextBox.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (56)))), ((int) (((byte) (203)))), ((int) (((byte) (123)))));
             this.outputRichTextBox.Location = new System.Drawing.Point(205, 466);
             this.outputRichTextBox.Name = "outputRichTextBox";
@@ -761,6 +772,7 @@ namespace Editor
             this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.outputRichTextBox);
             this.Controls.Add(this.searchList);
+            this.Controls.Add(this.rmWorkplaceBtn);
             this.Controls.Add(this.itemText);
             this.Controls.Add(this.replacePanel);
             this.Controls.Add(this.dirLabel);
@@ -773,7 +785,6 @@ namespace Editor
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.stateLabel);
             this.Controls.Add(this.dirTreeView);
-            this.Controls.Add(this.rmWorkplaceBtn);
             this.Controls.Add(this.rmBtn);
             this.Controls.Add(this.mvBtn);
             this.Controls.Add(this.mkfiBtn);
@@ -789,11 +800,15 @@ namespace Editor
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.replacePanel.ResumeLayout(false);
             this.replacePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 翻译TToolStripMenuItem;
 
         private System.Windows.Forms.Button refreshBtn;
 
@@ -857,7 +872,6 @@ namespace Editor
 
         private System.Windows.Forms.Label stateLabel;
 
-        private System.Windows.Forms.ToolStripMenuItem giteeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gitHubToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;

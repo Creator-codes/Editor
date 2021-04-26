@@ -30,6 +30,7 @@ namespace Editor
                     if ((ich < 65 || ich > 90) && (ich < 97 || ich > 122))
                     {
                         string str = editText.Text.Substring(wordPos, i - wordPos);
+                        // editText.Select(wordPos + 1, i - wordPos - 1);
                         editText.Select(wordPos, i - wordPos);
                         // 函数方法颜色
                         if (ch == '(')
@@ -66,7 +67,6 @@ namespace Editor
             // 推进光标
             editText.Select(i, 0);
         }
-        // private void language(string type)
         public void language(string type, RichTextBox editText)
         {
             editText.ForeColor = Color.FromArgb(237, 235, 233);
@@ -96,7 +96,8 @@ namespace Editor
                     "|(void)|(boolean)|(long)|(short)|(byte)|(interface)|(throw)|(finally)|(switch)|(case)|(do)|(enum)" +
                     "|(instanceof)|(super)|(synchronized)|(transient)|(extends)",
                     "");
-            } else if (Regex.IsMatch(type, "sql"))
+            }
+            else if (Regex.IsMatch(type, "sql"))
             {
                 styleSolution(editText,
                     "(databases)|(table)|(column)|(int)|(float)|(char)|(varchar)|(smallint)|(bigint)|(datetime)|(decimal)|(binary)|(image)|(bit)|(text)|(money)" +
@@ -108,7 +109,8 @@ namespace Editor
                     "|(avg)|(min)|(max)|(sum)|(count)|(group)|(having)" +
                     "|(AVG)|(MIN)|(MAX)|(SUM)|(COUNT)|(GROUP)|(HAVING)"
                 );
-            } else if (Regex.IsMatch(type, "php"))
+            }
+            else if (Regex.IsMatch(type, "php"))
             {
                 styleSolution(editText, 
                     "(final)|(const)|(static)|(public)|(function)|(private)|(new)|(array)|(if)|(else)|(switch)|(case)|(while)|(for)|(do)|(return)|(true)|(false)", 

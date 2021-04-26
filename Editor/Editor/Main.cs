@@ -5,8 +5,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Editor
 {
@@ -122,7 +125,7 @@ namespace Editor
             string linesCntText = "";
             for (int i = 2; i <= linesCnt; i++)
             {
-                linesCntText += "\n" + i ;
+                linesCntText += "\n" + i;
             }
             lineNumText.Text = "1" + linesCntText;
 
@@ -377,7 +380,10 @@ namespace Editor
          */
         private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
+            if (MessageBox.Show("是否关闭", "关闭", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Close();
+            }
         }
         /*
          * 撤销
@@ -823,7 +829,7 @@ namespace Editor
          */
         private void gitHubToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openBrowser("https://github.com/Creator-codes/Editor");
+            openBrowser("https://github.com/Creator-codes/Editor/blob/e_v1.0.0/README.md");
         }
         /*
          * 打开关于窗口
@@ -831,6 +837,41 @@ namespace Editor
         private void 关于AToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new aboutForm().ShowDialog();
+        }
+        /*
+         * 右键菜单
+         *  翻译   网络请求
+         */
+        private void 翻译TToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String text = editText.SelectedText;
+            outputRichTextBox.Visible = true;
+            outputRichTextBox.Text = "翻译内容：" + text + "\n结果：";
+            try
+            {
+                String url = "http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=" + text;
+                HttpWebRequest req = (HttpWebRequest) WebRequest.Create(url);
+                req.KeepAlive = false;
+                req.Timeout = 30 * 1000;
+                req.Method = "GET";
+                req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+                req.Host = "fanyi.youdao.com";
+                
+                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+                if (res.StatusCode != HttpStatusCode.OK)
+                {
+                    return;
+                }
+
+                using (StreamReader streamReader = new StreamReader(res.GetResponseStream()))
+                {
+                    JObject jObject = (JObject)JsonConvert.DeserializeObject(streamReader.ReadToEnd());
+                    JArray translateRes = (JArray)JsonConvert.DeserializeObject(jObject["translateResult"].ToString());
+                    JArray Res = (JArray)JsonConvert.DeserializeObject(translateRes[0].ToString());
+                    JObject tgt = JObject.Parse(Res[0].ToString());
+                    outputRichTextBox.Text += tgt["tgt"].ToString();
+                }
+            } catch (Exception) {}
         }
     } 
 }
