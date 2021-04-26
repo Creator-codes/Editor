@@ -30,7 +30,7 @@ namespace Editor
                     if ((ich < 65 || ich > 90) && (ich < 97 || ich > 122))
                     {
                         string str = editText.Text.Substring(wordPos, i - wordPos);
-                        editText.Select(wordPos + 1, i - wordPos - 1);
+                        editText.Select(wordPos, i - wordPos);
                         // 函数方法颜色
                         if (ch == '(')
                         {
