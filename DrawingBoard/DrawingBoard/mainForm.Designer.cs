@@ -36,8 +36,12 @@
             this.保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.另存为AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.撤销ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.恢复ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.剪切ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.黏贴ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.brushBtn = new System.Windows.Forms.ToolStripButton();
             this.eraserBtn = new System.Windows.Forms.ToolStripButton();
@@ -63,6 +67,7 @@
             this.textBox = new System.Windows.Forms.ToolStripTextBox();
             this.clearBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripLabel();
+            this.areaBtn = new System.Windows.Forms.ToolStripButton();
             this.picBox = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -71,7 +76,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.新建NToolStripMenuItem, this.打开OToolStripMenuItem, this.保存ToolStripMenuItem, this.另存为AToolStripMenuItem, this.帮助HToolStripMenuItem, this.撤销ToolStripMenuItem, this.恢复ToolStripMenuItem});
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.新建NToolStripMenuItem, this.打开OToolStripMenuItem, this.保存ToolStripMenuItem, this.另存为AToolStripMenuItem, this.帮助HToolStripMenuItem, this.toolStripSeparator1, this.撤销ToolStripMenuItem, this.恢复ToolStripMenuItem, this.复制ToolStripMenuItem, this.剪切ToolStripMenuItem, this.黏贴ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -119,6 +124,11 @@
             this.帮助HToolStripMenuItem.Text = "帮助(&H)";
             this.帮助HToolStripMenuItem.Click += new System.EventHandler(this.帮助HToolStripMenuItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 24);
+            // 
             // 撤销ToolStripMenuItem
             // 
             this.撤销ToolStripMenuItem.Enabled = false;
@@ -137,12 +147,37 @@
             this.恢复ToolStripMenuItem.Text = "恢复";
             this.恢复ToolStripMenuItem.Click += new System.EventHandler(this.恢复ToolStripMenuItem_Click);
             // 
+            // 复制ToolStripMenuItem
+            // 
+            this.复制ToolStripMenuItem.Enabled = false;
+            this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
+            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.复制ToolStripMenuItem.Text = "复制";
+            this.复制ToolStripMenuItem.Click += new System.EventHandler(this.复制ToolStripMenuItem_Click);
+            // 
+            // 剪切ToolStripMenuItem
+            // 
+            this.剪切ToolStripMenuItem.Enabled = false;
+            this.剪切ToolStripMenuItem.Name = "剪切ToolStripMenuItem";
+            this.剪切ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.剪切ToolStripMenuItem.Text = "剪切";
+            this.剪切ToolStripMenuItem.Click += new System.EventHandler(this.剪切ToolStripMenuItem_Click);
+            // 
+            // 黏贴ToolStripMenuItem
+            // 
+            this.黏贴ToolStripMenuItem.Name = "黏贴ToolStripMenuItem";
+            this.黏贴ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.黏贴ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.黏贴ToolStripMenuItem.Text = "黏贴";
+            this.黏贴ToolStripMenuItem.Visible = false;
+            this.黏贴ToolStripMenuItem.Click += new System.EventHandler(this.黏贴ToolStripMenuItem_Click);
+            // 
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (165)))), ((int) (((byte) (165)))), ((int) (((byte) (170)))));
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Right;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.brushBtn, this.eraserBtn, this.toolStripButton3, this.lineBtn, this.rectBtn, this.triBtn, this.ellipseBtn, this.pointToBtn, this.fillRectBtn, this.fillTriBtn, this.fillElliBtn, this.toolStripButton1, this.colorBtn, this.sizeAdjustBtn, this.whiteboardBtn, this.toolStripLabel1, this.toolStripButton2, this.textBtn, this.clearBtn, this.toolStripButton4});
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.brushBtn, this.eraserBtn, this.toolStripButton3, this.lineBtn, this.rectBtn, this.triBtn, this.ellipseBtn, this.pointToBtn, this.fillRectBtn, this.fillTriBtn, this.fillElliBtn, this.toolStripButton1, this.colorBtn, this.sizeAdjustBtn, this.whiteboardBtn, this.toolStripLabel1, this.toolStripButton2, this.textBtn, this.clearBtn, this.toolStripButton4, this.areaBtn});
             this.toolStrip1.Location = new System.Drawing.Point(1143, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -368,6 +403,16 @@
             this.toolStripButton4.Size = new System.Drawing.Size(38, 20);
             this.toolStripButton4.Text = "清空";
             // 
+            // areaBtn
+            // 
+            this.areaBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.areaBtn.Image = ((System.Drawing.Image) (resources.GetObject("areaBtn.Image")));
+            this.areaBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.areaBtn.Name = "areaBtn";
+            this.areaBtn.Size = new System.Drawing.Size(38, 20);
+            this.areaBtn.Text = "选区";
+            this.areaBtn.Click += new System.EventHandler(this.areaBtn_Click);
+            // 
             // picBox
             // 
             this.picBox.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (62)))), ((int) (((byte) (89)))), ((int) (((byte) (62)))));
@@ -407,6 +452,15 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolStripMenuItem 黏贴ToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem 复制ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 剪切ToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+
+        private System.Windows.Forms.ToolStripButton areaBtn;
 
         private System.Windows.Forms.ToolStripButton fillTriBtn;
         private System.Windows.Forms.ToolStripButton fillElliBtn;

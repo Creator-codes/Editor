@@ -20,7 +20,7 @@ namespace DrawingBoard
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/Creator-codes/Editor/blob/d_v1.0.0/README.md");
+            System.Diagnostics.Process.Start("https://github.com/Creator-codes/Editor/blob/d_v1.1.0/README.md");
         }
 
         private void aboutMoreLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

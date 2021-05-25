@@ -13,6 +13,8 @@ namespace DrawingBoard
         // 画入缓存
         private Graphics bitGraphics;
         private Bitmap bitmap;
+        // 记录选区
+        private Bitmap setAreaBitmap;
 
         private Pen pen;
 
@@ -26,10 +28,12 @@ namespace DrawingBoard
 
         private int penShape = 2;
 
-        // 坐标
+        // 坐标（最后一次坐标）
         private int x = 0, y = 0;
-
+        // 开始坐标
         private Point startPoint;
+        // 获取选区开始坐标 选区结束坐标
+        private Point getAreaStartPoint, getAreaEndPoint;
 
         // 判断是否绘画 及其操作
         private bool isPaint = false;
@@ -42,7 +46,12 @@ namespace DrawingBoard
         private bool isPointTo = false;
 
         private bool isTxt = false;
+        // 选区按键 放置选区触发标志
+        private bool isAreaBtn = false;
 
+        // 是否黏贴
+        private bool isPaste = false;
+        
         // 文件路径
         private string filePath = "";
 
@@ -55,9 +64,11 @@ namespace DrawingBoard
         {
             // 初始化图片及图片大小
             bitmap = new Bitmap(Screen.GetBounds(this).Width, Screen.GetBounds(this).Height);
-            bitGraphics = Graphics.FromImage(bitmap);
+            // bitGraphics = Graphics.FromImage(bitmap);
+            // bitGraphics.DrawRectangle(new Pen(Color.FromArgb(62, 89, 62)),0, 0, Screen.GetBounds(this).Width, Screen.GetBounds(this).Height);
+            clearPicBox();
             // 初始化画板
-            picBox.Image = bitmap;
+            // picBox.Image = bitmap;
             // 设置笔鼠标图标
             Bitmap cursor = (Bitmap) Bitmap.FromFile("brush.png");
             SetCursor(cursor, new Point(30, 30));
@@ -65,7 +76,10 @@ namespace DrawingBoard
             // 开始记录
             undoStack.Push(new Bitmap(bitmap));
         }
-
+        
+        /*
+         * 设置鼠标样式
+         */
         public void SetCursor(Bitmap cursor, Point hotPoint)
         {
             int hotX = hotPoint.X;
@@ -88,6 +102,8 @@ namespace DrawingBoard
         {
             bitGraphics = Graphics.FromImage(bitmap);
             bitGraphics.Clear(Color.FromArgb(62, 89, 62));
+            bitGraphics.DrawRectangle(new Pen(Color.FromArgb(62, 89, 62)),0, 0, Screen.GetBounds(this).Width, Screen.GetBounds(this).Height);
+
             //初始化画板
             picBox.Image = bitmap;
         }
@@ -112,7 +128,7 @@ namespace DrawingBoard
             撤销ToolStripMenuItem.Enabled = undoStack.Count > 1 ? true : false;
             恢复ToolStripMenuItem.Enabled = redoStack.Count > 0 ? true : false;
         }
-        
+
         /*
          * 文件操作
          *  新建
@@ -121,6 +137,9 @@ namespace DrawingBoard
          *  另存为
          *  撤销
          *  恢复
+         *  复制
+         *  剪切
+         *  黏贴
          */
         private void 新建NToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -128,7 +147,6 @@ namespace DrawingBoard
             {
                 另存为AToolStripMenuItem_Click(null, null);
             }
-
             clearPicBox();
         }
 
@@ -224,7 +242,38 @@ namespace DrawingBoard
             
             optState();
         }
+        
+        private void 复制ToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
+            剪切ToolStripMenuItem.Enabled = 复制ToolStripMenuItem.Enabled;
+            复制ToolStripMenuItem.Enabled = !复制ToolStripMenuItem.Enabled;
+        }
 
+        private void 剪切ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            复制ToolStripMenuItem.Enabled = 剪切ToolStripMenuItem.Enabled;
+            剪切ToolStripMenuItem.Enabled = !剪切ToolStripMenuItem.Enabled;
+        }
+        
+        /*
+         * 黏贴
+         */
+        private void paste(int x, int y)
+        {
+            IDataObject iDataObject = Clipboard.GetDataObject();
+            if (iDataObject.GetDataPresent(DataFormats.Bitmap))
+            {
+                bitmap = new Bitmap(picBox.Image);
+                bitGraphics = Graphics.FromImage(bitmap);
+                bitGraphics.DrawImage((Bitmap) iDataObject.GetData(DataFormats.Bitmap), x, y);
+                picBox.Image = bitmap;
+            }
+        }
+        
+        private void 黏贴ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isPaste = true;
+        }
         
         /*
          * 工具操作
@@ -236,9 +285,13 @@ namespace DrawingBoard
          *  三角 triBtn_Click
          *  椭圆 ellipseBtn_Click
          *  指向 pointToBtn_Click
+         *  实心矩形 fillRectBtn_Click
+         *  实心三角 fillTriBtn_Click
+         *  实心椭圆 fillElliBtn_Click
          *  颜色板 colorBtn_Click
          *  大小 sizeMenuItem_Click
          *  文字 textBtn_Click
+         *  选区 areaBtn_Click
          *  清空白板按键 clearBtn_Click
          *  白板模式 whiteboardBtn_Click
          */
@@ -256,6 +309,9 @@ namespace DrawingBoard
             isFillTri = false;
             isFillElli = false;
             isTxt = false;
+            isAreaBtn = false;
+            剪切ToolStripMenuItem.Enabled = false;
+            复制ToolStripMenuItem.Enabled = false;
 
             // 设置十字鼠标样式
             picBox.Cursor = Cursors.Cross;
@@ -382,6 +438,13 @@ namespace DrawingBoard
             isTxt = true;
         }
 
+        private void areaBtn_Click(object sender, EventArgs e)
+        {
+            initTools();
+            areaBtn.BackColor = Color.FromArgb(120, 165, 170);
+            isAreaBtn = true;
+        }
+        
         private void clearBtn_Click(object sender, EventArgs e)
         {
             clearPicBox();
@@ -407,7 +470,7 @@ namespace DrawingBoard
             left = startPoint.X <= endPoint.X ? startPoint.X : endPoint.X;
             bottom = startPoint.Y > endPoint.Y ? startPoint.Y : endPoint.Y;
             right = startPoint.X > endPoint.X ? startPoint.X : endPoint.X;
-            return (new Rectangle(left, top, right - left, bottom - top));
+            return new Rectangle(left, top, right - left, bottom - top);
         }
 
         /*
@@ -430,6 +493,7 @@ namespace DrawingBoard
             bitGraphics.DrawLine(pen, startPoint.X, startPoint.Y, endPoint.X, endPoint.Y);
         }
 
+        
         /*
          * 鼠标绘图
          */
@@ -437,6 +501,12 @@ namespace DrawingBoard
         {
             if (e.Button == MouseButtons.Left)
             {
+                if (isPaste)
+                {
+                    paste(e.X, e.Y);
+                    isPaste = false;
+                }
+                
                 x = e.X;
                 y = e.Y;
                 startPoint = new Point(x, y);
@@ -450,6 +520,19 @@ namespace DrawingBoard
 
                     bitGraphics.DrawString(textBox.Text, font, brush, x, y);
                     textBox.Text = "";
+                }
+
+                if (复制ToolStripMenuItem.Enabled || 剪切ToolStripMenuItem.Enabled)
+                {
+                    // 剪切操作 选区重绘
+                    if (!剪切ToolStripMenuItem.Enabled)
+                    {
+                        Rectangle rectangle = makeRectangle(getAreaStartPoint, getAreaEndPoint);
+                        bitGraphics.FillRectangle(new SolidBrush(Color.FromArgb(62, 89, 62)), rectangle);
+                    }
+                    
+                    //黏贴
+                    paste(e.X, e.Y);
                 }
             }
         }
@@ -489,7 +572,7 @@ namespace DrawingBoard
                     picGraphics.DrawLine(pen, startPoint.X, startPoint.Y, e.X, e.Y);
                 }
 
-                if (isRect || isFillRect)
+                if (isRect || isFillRect || isAreaBtn)
                 {
                     Rectangle rectangle = makeRectangle(startPoint, new Point(x, y));
                     picGraphics.DrawRectangle(pen, rectangle);
@@ -524,6 +607,7 @@ namespace DrawingBoard
                 bitGraphics.SmoothingMode = SmoothingMode.HighQuality;
                 // 实心
                 pen.DashStyle = DashStyle.Solid;
+                SolidBrush solidBrush = new SolidBrush(penColor);
 
                 if (isLine)
                 {
@@ -539,7 +623,7 @@ namespace DrawingBoard
                 if (isFillRect)
                 {
                     Rectangle rectangle = makeRectangle(startPoint, new Point(x, y));
-                    bitGraphics.FillRectangle(new SolidBrush(penColor), rectangle);
+                    bitGraphics.FillRectangle(solidBrush, rectangle);
                 }
 
                 if (isTri)
@@ -549,7 +633,7 @@ namespace DrawingBoard
 
                 if (isFillTri)
                 {
-                    bitGraphics.FillPolygon(new SolidBrush(penColor), makeTriangle(startPoint, new Point(x, y)));
+                    bitGraphics.FillPolygon(solidBrush, makeTriangle(startPoint, new Point(x, y)));
                 }
 
                 if (isElli)
@@ -561,7 +645,7 @@ namespace DrawingBoard
                 if (isFillElli)
                 {
                     Rectangle ellipse = makeRectangle(startPoint, new Point(x, y));
-                    bitGraphics.FillEllipse(new SolidBrush(penColor), ellipse);
+                    bitGraphics.FillEllipse(solidBrush, ellipse);
                 }
 
                 if (isPointTo)
@@ -569,6 +653,30 @@ namespace DrawingBoard
                     makePointTo(startPoint, new Point(x, y));
                 }
 
+                // 选取使用虚线 但不划入缓存
+                if (isAreaBtn)
+                {
+                    try
+                    {
+                        Graphics picGraphics = picBox.CreateGraphics();
+                        picGraphics.SmoothingMode = SmoothingMode.HighQuality;
+                        pen = new Pen(Color.Azure, 2);
+                        pen.DashStyle = DashStyle.Dash;
+                        Rectangle rectangle = makeRectangle(startPoint, new Point(x, y));
+                        picGraphics.DrawRectangle(pen, rectangle);
+                        // 剪切板
+                        PixelFormat format = bitmap.PixelFormat;
+                        setAreaBitmap = bitmap.Clone(rectangle, format);
+                        Clipboard.SetDataObject(setAreaBitmap);
+                        // 获取该区域 当剪切时将该区域覆盖
+                        getAreaStartPoint = startPoint;
+                        getAreaEndPoint = new Point(x, y);
+                        // 默认为复制操作 剪切ToolStripMenuItem.Enabled = !复制ToolStripMenuItem.Enabled;
+                        剪切ToolStripMenuItem_Click(null, null);
+                    }
+                    catch (Exception exception) {}
+                }
+                
                 picBox.Image = bitmap;
 
                 // 记录操作
@@ -578,5 +686,6 @@ namespace DrawingBoard
                 optState();
             }
         }
+        
     }
 }
